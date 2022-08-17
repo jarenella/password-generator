@@ -25,12 +25,12 @@ function writePassword() {
 
   var yesCapitalLetters = confirm("Would you like to include capital letters? Press OK for yes and Cancel for no");
 
-  var characterCount = prompt("How many characters would you like to make your password? Please choose 8-20 characters.");
+  var characterCount = prompt("How many characters would you like to make your password? Please choose 8-128 characters.");
 
   //determines what array to pick random characters from based on the answers to questions. After characters are chosen at random, they are pushed into the afforementioned passwordArray variable
   //if the character count is too small or too large, a message will pop up, and pressing ok will restart the questioning process
-  if (characterCount < 8 || characterCount > 20) {
-    confirm("Please enter a password length between 8 to 20 characters.");
+  if (characterCount < 8 || characterCount > 128) {
+    confirm("Please enter a password length between 8 to 128 characters.");
     writePassword();
   }
   //FALSE FALSE (no special characters or caps)
@@ -63,7 +63,7 @@ function writePassword() {
   }
   //else statement just incase
   else {
-    alert("Something went wrong! Please refresh the page and try again. Remember to choose a password length between 8 to 20 characters and click OK to confirm. For the yes or no questions, treat ok as yes and cancel as no");
+    alert("Something went wrong! Please refresh the page and try again. Remember to choose a password length between 8 to 128 characters and click OK to confirm. For the yes or no questions, treat ok as yes and cancel as no");
   }
 
   //turns the password array (named passwordArray) into a string
