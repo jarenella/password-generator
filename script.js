@@ -8,14 +8,19 @@ passwordArray = [];
 var generateBtn = document.querySelector("#generate");
 
 //arrays of all possible characters, default, uppercase, and special characters
-var defaultCharacters = ['q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m','1','2','3','4','5','6','7','8','9','0'];
+var defaultCharacters = ['q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m'];
 var upperCaseYes = ['Q','W,','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M'];
 var specialCharactersYes = ['!','@','#','$','%','^','&','*','(',')','-','_','=','+','[',']','{','}'];
+var numbersYes = ['1','2','3','4','5','6','7','8','9','0'];
 
 //arrays for all possible combinations of above arrays
 var defaultPlusUpperCase = defaultCharacters.concat(upperCaseYes);
 var defaultPlusSpecialCharacters = defaultCharacters.concat(specialCharactersYes);
-var allCharacters = defaultCharacters.concat(upperCaseYes, specialCharactersYes);
+var defaultPlusUpperCasePlusNumbers = defaultCharacters.concat(upperCaseYes, numbersYes);
+var defaultPlusNumbers = defaultCharacters.concat(numbersYes);
+var defaultPlusSpecialCharactersPlusNumbers = defaultCharacters.concat(specialCharactersYes, numbersYes);
+var defaultPlusUpperCasePlusSpecialCharacters = defaultCharacters.concat(upperCaseYes, specialCharactersYes);
+var allCharacters = defaultCharacters.concat(upperCaseYes, specialCharactersYes, numbersYes);
 
 // confirms special characters and caps then generates the password and writes it to the #password input
 function writePassword() {
@@ -25,6 +30,8 @@ function writePassword() {
 
   var yesCapitalLetters = confirm("Would you like to include capital letters? Press OK for yes and Cancel for no");
 
+  var yesNumbers = confirm("Would you like to include numbers? Press OK for yes and Cancel for no");
+
   var characterCount = prompt("How many characters would you like to make your password? Please choose 8-128 characters.");
 
   //determines what array to pick random characters from based on the answers to questions. After characters are chosen at random, they are pushed into the afforementioned passwordArray variable
@@ -33,31 +40,59 @@ function writePassword() {
     confirm("Please enter a password length between 8 to 128 characters.");
     writePassword();
   }
-  //FALSE FALSE (no special characters or caps)
-  else if (yesSpecialCharacters == false && yesCapitalLetters ==false) {
+  //(no special characters or caps or numbers)
+  else if (yesSpecialCharacters == false && yesCapitalLetters == false && yesNumbers == false) {
     for (i=0; i < characterCount; i++) {
       var randomCharacter = defaultCharacters[Math.floor(Math.random() * defaultCharacters.length)];
       passwordArray.push(randomCharacter);
     };
   }
-  //TRUE FALSE (special characters but no caps)
-  else if (yesSpecialCharacters == true && yesCapitalLetters ==false) {
+  //(special characters but no caps and no numbers)
+  else if (yesSpecialCharacters == true && yesCapitalLetters == false && yesNumbers == false) {
     for (i=0; i < characterCount; i++) {
       var randomCharacter = defaultPlusSpecialCharacters[Math.floor(Math.random() * defaultPlusSpecialCharacters.length)];
       passwordArray.push(randomCharacter);
     };
   }
-  //TRUE TRUE (special characters and caps)
-  else if (yesSpecialCharacters == true && yesCapitalLetters ==true) {
+  //(special characters and caps but no numbers)
+  else if (yesSpecialCharacters == true && yesCapitalLetters == true && yesNumbers == false) {
+    for (i=0; i < characterCount; i++) {
+      var randomCharacter = defaultPlusUpperCasePlusSpecialCharacters[Math.floor(Math.random() * defaultPlusUpperCasePlusSpecialCharacters.length)];
+      passwordArray.push(randomCharacter);
+    };
+  }
+  //(no special characters and no numbers but still caps)
+  else if (yesSpecialCharacters == false && yesCapitalLetters == true && yesNumbers == false) {
+    for (i=0; i < characterCount; i++) {
+      var randomCharacter = defaultPlusUpperCase[Math.floor(Math.random() * defaultPlusUpperCase.length)];
+      passwordArray.push(randomCharacter);
+    };
+  }
+  //(no special characters or caps but still numbers)
+  else if (yesSpecialCharacters == false && yesCapitalLetters == false && yesNumbers == true) {
+    for (i=0; i < characterCount; i++) {
+      var randomCharacter = defaultPlusNumbers[Math.floor(Math.random() * defaultPlusNumbers.length)];
+      passwordArray.push(randomCharacter);
+    };
+  }
+  //(special characters and numbers but no caps)
+  else if (yesSpecialCharacters == true && yesCapitalLetters == false && yesNumbers == true) {
+    for (i=0; i < characterCount; i++) {
+      var randomCharacter = defaultPlusSpecialCharactersPlusNumbers[Math.floor(Math.random() * defaultPlusSpecialCharactersPlusNumbers.length)];
+      passwordArray.push(randomCharacter);
+    };
+  }
+  //(special characters and caps and numbers)
+  else if (yesSpecialCharacters == true && yesCapitalLetters == true && yesNumbers == true) {
     for (i=0; i < characterCount; i++) {
       var randomCharacter = allCharacters[Math.floor(Math.random() * allCharacters.length)];
       passwordArray.push(randomCharacter);
     };
   }
-  //FALSE TRUE (no special characters but still caps)
-  else if (yesSpecialCharacters == false && yesCapitalLetters ==true) {
+  //(no special characters but numbers and caps)
+  else if (yesSpecialCharacters == false && yesCapitalLetters == true && yesNumbers == true) {
     for (i=0; i < characterCount; i++) {
-      var randomCharacter = defaultPlusUpperCase[Math.floor(Math.random() * defaultPlusUpperCase.length)];
+      var randomCharacter = defaultPlusUpperCasePlusNumbers[Math.floor(Math.random() * defaultPlusUpperCasePlusNumbers.length)];
       passwordArray.push(randomCharacter);
     };
   }
