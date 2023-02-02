@@ -4,7 +4,9 @@
 
 # Description
 
-This project allows you to generate a completely cryptic and secure password at random based off of a set of user prompts.
+This project allows you to generate a completely cryptic and secure password at random based off of a set of user prompts. These passwords will be entirely random, and therefore secure, but rather cryptic and nearly impossible to memorize. For this reason, this app is recommended for users who prefer this type of password and store them in password vaults.
+
+This project could also be used for any kind of random generation of strings of characters. The logic can easily be implemented into a system that sends users a two-factor-authentication key. If you'd like to copy-paste chunks of the code to use for that purpose, please feel free!
 
 ![Password Generator](./deployed_screenshots/deployed_blank.png)
 
